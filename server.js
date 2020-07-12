@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
     user: "root",
 
     // Your password
-    password: "ruokaddy?",
+    password: "",
     database: "employeeTracker_DB"
 });
 
@@ -56,12 +56,12 @@ const menuOptions = {
     "View Departments": function(){
         // console.table([
             console.log("View Departments"),
-            selectAllFrom("departments", mainMenu)
+            selectAllDepartments(mainMenu)
         // ])
     },
     "View Employee Roles": function(){
         console.log("View Employee Roles")
-        selectAllFrom("roles", mainMenu)
+        selectAllRoles(mainMenu)
     },
     "View Employees": function(){
         // console.table("All Employees")
@@ -122,6 +122,47 @@ function selectAllEmployees(cb) {
             //   console.log(fields)
         })
     // ])
+}
+
+function selectAllRoles(cb){
+    connection.query("SELECT r.id, r.title, r.salary, d.name FROM role r JOIN department d ON r.department_id = d.id",
+    function (error, results, fields) {
+        if (error) throw error;
+        // console.log(results[0].first_name)
+        let roles = []
+        results.forEach(function (model){
+            roles.push({id : model.id,
+                role_title : model.title,
+                role_salary : model.salary,
+                department_name : model.name
+        
+            })
+        })
+        // employees.push(results[0].first_name)
+        // employees.push(results[1].first_name)
+        console.table(roles)
+        cb()
+        //   console.log(fields)
+    })
+}
+
+function selectAllDepartments(cb){
+    connection.query("SELECT * FROM department",
+    function (error, results, fields) {
+        if (error) throw error;
+        // console.log(results[0].first_name)
+        let departments = []
+        results.forEach(function (model){
+            departments.push({id : model.id,
+                name : model.name
+            })
+        })
+        // employees.push(results[0].first_name)
+        // employees.push(results[1].first_name)
+        console.table(departments)
+        cb()
+        //   console.log(fields)
+    })
 }
 
 function selectAllFrom(tableName, cb) {
