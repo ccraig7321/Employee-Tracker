@@ -53,11 +53,11 @@ The final step the user can complete in the application is the deleting notes th
 <br><br>
 ___
 
-### Links for Heroku Deployment and GitHubDeployment
+### Links for Video Guide and GitHubDeployment
 <br>
-Heroku: https://note-taker7.herokuapp.com/
+Video Guie: https://drive.google.com/file/d/1KuuBSc4G3di5bms1ZfgsBLt90uDd9-Sb/view
 <br><br>
-GitHub: https://ccraig7321.github.io/Note-Taker/
+GitHub:  https://ccraig7321.github.io/Employee-Tracker/
 <br><br>
 
 
