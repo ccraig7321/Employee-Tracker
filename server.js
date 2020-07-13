@@ -202,18 +202,6 @@ function selectAllDepartments(cb){
     })
 }
 
-// function selectAllFrom(tableName, cb) {
-//     console.table([
-
-//         connection.query("SELECT * FROM " + tableName, function (error, results, fields) {
-//             if (error) throw error;
-//             console.log(results)
-//             cb()
-//             //   console.log(fields)
-//         })
-//     ])
-// }
-
 function addEmployee(first_name, last_name, role_id, manager_id, cb) {
     var sqlQuery = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`
     connection.query(sqlQuery, [first_name, last_name, role_id, manager_id], function (error, results, fields) {

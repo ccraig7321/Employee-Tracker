@@ -8,14 +8,21 @@ ___
 
 ## How it Works
 
-In order for this application to work the user will need to use the terminal to run the program.  Here is where the user will be able to the main menu of the applicaiton. This can be done by runnning "node server" in the command line.
+In order for this application to work the user will need to use the terminal to run the program.  The application is linked to MySQL via a query connection that gets the information from the schema page and inputs it into the command line application. 
+<br><br>
+
+![MYSQL](Assets/mySQL.png)
+
+<br><br>
+
+In the terminal is where the user will be able to the main menu of the applicaiton. This can be done by runnning "node server" in the command line.
 <br><br>
 
 ![MAIN MENU](Assets/mainMenu.png)
 
 <br><br>
 
-From there, the user will be able to use the arrow keys to navigate to a new tab. If the user decides to add a new employee, department, or role, he/she will be prompted with a series of questions using the inquirer package through Node.js.
+From there, the user will be able to use the arrow keys to navigate to a new tab. If the user decides to add a new employee, department, or role, he/she will be prompted with a series of questions using the inquirer package through Node.js. This is done by establishing relationships between the tables and implementing mulitple foreign keys within the code.
 
 <br><br>
 
@@ -23,33 +30,21 @@ From there, the user will be able to use the arrow keys to navigate to a new tab
 
 <br><br>
 
-By doing this, the user will be able to view the opening page of the application. From there, he/she will be able to click on the "Get Started" button in the middle of the page. 
+After each prompt is completed, the user will be directed back to the main menu in order to continue making new selections within the application. If the user choices to view the departments, employee roles, or all employees, he/she will see a table of all the results wihtin that particular field. This is acheived through the console.table package through node. 
 <br><br>
 
-![APP HOMEPAGE](public/assets/homepage.png)
-
-<br><br>
-
-Once the "Get Started" button in clicked, the user will be navegated to the "notes.html" page. This is acheived by using the app.get method that sends the file from the index pages to the notes page. Here the user has the option to type in a note and save it into the on the lefthand side of the page using the app.post method along with the readfile and writefile methods found in fs pakage within node.
-<br><br>
-
-![SAVING NOTES](public/assets/notesPage.png)
+![EMPLOYEE TABLE](Assets/employeeTable.png)
 
 <br><br>
 
-By adding the file, the user can view the db.json file and find that what once was an empty array, now contains the notes that have been created on the frontend as objects.
+The final action that can be in this application is the option to change the role of an employee. This is done by changing the role id of the employee to a new id.
 <br><br>
 
-![PICTURE OF DB.JSON](public/assets/dbjsonNote.png)
-
-<br><br>
-
-The final step the user can complete in the application is the deleting notes that he/she no longer wishes to be in the note taker application. To do this, the user will click on the red trashcan icon and the object will be removed from the db.json file. The remaining items will be displayed on the frontend.
+![UPDATE ROLE](Assets/updateRole.png)
 
 <br><br>
 
-![PICTURE OF DELETED NOTE](public/assets/deletedNote.png)
-
+Once this is completed, the user can continue to add and view employee information until their process is completed.
 <br><br>
 ___
 
