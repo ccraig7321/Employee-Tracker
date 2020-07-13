@@ -1,27 +1,25 @@
 # Employee-Tracker
 
-___
-
 ## Description
 
-This application will allow the user to actively take notes and track his/her previous notes that were previously saved. Along with this, the user will also be able to delete notes that are no longer needed at his/her descretion.
+This application will allow the user to track employees, roles, and departments within the database. Along with this, the user will also be able to add new employees, new roles, and new departments at his/her descretion.
 
 ___
 
 ## How it Works
 
-In order for this application to work the user will need to use the terminal to run the program.  Here is where the user will be able to get the PORT information in order to get the localhost number to open in the browser. This can be done by runnning "node serve" in the command line.
+In order for this application to work the user will need to use the terminal to run the program.  Here is where the user will be able to the main menu of the applicaiton. This can be done by runnning "node server" in the command line.
 <br><br>
 
-![PORT INFO](public/assets/PORT.png)
-
-<br><br>
-
-From there, the user will need to navigate over to their brower and open up the local host listen port in order to view the page.
+![MAIN MENU](Assets/mainMenu.png)
 
 <br><br>
 
-![LOCALHOST IN BROWSER](public/assets/LOCALHOSTBrowser.png)
+From there, the user will be able to use the arrow keys to navigate to a new tab. If the user decides to add a new employee, department, or role, he/she will be prompted with a series of questions using the inquirer package through Node.js.
+
+<br><br>
+
+![ADD QUESTIONS](Assets/addQuestions.png)
 
 <br><br>
 

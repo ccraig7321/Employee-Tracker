@@ -1,7 +1,7 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 const cTable = require("console.table");
-const dotenv = require('dotenv').config();
+// const dotenv = require('dotenv').config();
 
 
 var connection = mysql.createConnection({
@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
     user: "root",
 
     // Your password
-    password: dotenv,
+    password: "ruokaddy?",
     database: "employeeTracker_DB"
 });
 
@@ -24,19 +24,13 @@ const menuOptions = {
             {
                 type: "input",
                 name: "name",
-                message: "What is the name of the department?"
+                message: "What is the name of the new department?"
             },
         ]).then(function (answer) {
-            addDepartment(answer.name, mainMenu())
+            addDepartment(answer.name)
             // console.log(answers)
+            mainMenu()
         })
-
-        // console.log("Add New Employee")
-        // mainMenu()
-        // console.log("Add Employee Role")
-        // mainMenu()
-        // console.log("Add Department")
-        // mainMenu()
     },
 
     "Add Employee Role": function(){
@@ -60,11 +54,6 @@ const menuOptions = {
             addRole(answer.title, parseInt(answer.salary), parseInt(answer.department_id), mainMenu())
             // console.log(answers)
         })
-    
-        // console.log("Add New Employee")
-        // mainMenu()
-        // console.log("Add Employee Role")
-        // mainMenu()
     },
     "Add New Employee": function(){
         inquirer.prompt([
@@ -90,9 +79,6 @@ const menuOptions = {
             addEmployee(answer.first_name, answer.last_name, parseInt(answer.role_id), parseInt(answer.manager_id), mainMenu)
             // console.log(answers)
         })
-    
-        // console.log("Add New Employee")
-        // mainMenu()
     },
     "View Departments": function(){
         // console.table([
@@ -125,17 +111,7 @@ const menuOptions = {
             updateRole(answer.role_ID, answer.employeeID, mainMenu())
             // console.log(answers)
         })
-
-        // console.log("Add New Employee")
-        // mainMenu()
-        // console.log("Add Employee Role")
-        // mainMenu()
-        // console.log("Add Department")
-        // mainMenu()
     },
-    //     console.log("Update Employee Roles")
-    //     mainMenu()
-    // },
 }
 
 function mainMenu() {
@@ -202,8 +178,6 @@ function selectAllRoles(cb){
         
             })
         })
-        // employees.push(results[0].first_name)
-        // employees.push(results[1].first_name)
         console.table(roles)
         cb()
         //   console.log(fields)
@@ -222,25 +196,23 @@ function selectAllDepartments(cb){
                 name : model.name
             })
         })
-        // employees.push(results[0].first_name)
-        // employees.push(results[1].first_name)
         console.table(departments)
         cb()
         //   console.log(fields)
     })
 }
 
-function selectAllFrom(tableName, cb) {
-    console.table([
+// function selectAllFrom(tableName, cb) {
+//     console.table([
 
-        connection.query("SELECT * FROM " + tableName, function (error, results, fields) {
-            if (error) throw error;
-            console.log(results)
-            cb()
-            //   console.log(fields)
-        })
-    ])
-}
+//         connection.query("SELECT * FROM " + tableName, function (error, results, fields) {
+//             if (error) throw error;
+//             console.log(results)
+//             cb()
+//             //   console.log(fields)
+//         })
+//     ])
+// }
 
 function addEmployee(first_name, last_name, role_id, manager_id, cb) {
     var sqlQuery = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`
