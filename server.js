@@ -18,28 +18,67 @@ var connection = mysql.createConnection({
 
 const menuOptions = {
     "Add Department": function(){
-        console.log("Add Department")
-        mainMenu()
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "name",
+                message: "What is the name of the department?"
+            },
+        ]).then(function (answer) {
+            addRole(answer.name, mainMenu())
+            // console.log(answers)
+        })
+
+        // console.log("Add New Employee")
+        // mainMenu()
+        // console.log("Add Employee Role")
+        // mainMenu()
+        // console.log("Add Department")
+        // mainMenu()
     },
+
     "Add Employee Role": function(){
-        console.log("Add Employee Role")
-        mainMenu()
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "title",
+                message: "What type of role would you like to add?"
+            },
+            {
+                type: "input",
+                name: "salary",
+                message: "What is the salary (must include 2 decimal places)?"
+            },
+            {
+                type: "input",
+                name: "department_id",
+                message: "What is the department id for this role?"
+            },
+        ]).then(function (answer) {
+            addRole(answer.title, parseInt(answer.salary), parseInt(answer.department_id), mainMenu())
+            // console.log(answers)
+        })
+    
+        // console.log("Add New Employee")
+        // mainMenu()
+        // console.log("Add Employee Role")
+        // mainMenu()
     },
     "Add New Employee": function(){
         inquirer.prompt([
             {
                 type: "input",
                 name: "first_name",
-                message: "What is the first name?",
+                message: "What is the employees first name?",
             },
             {
                 type: "input",
                 name: "last_name",
-                message: "What is the last name",
+                message: "What is the last employees name?",
             },            {
                 type: "input",
                 name: "role_id",
-                message: "What is the role id?",
+                message: "What is the employees role id?",
             },            {
                 type: "input",
                 name: "manager_id",
@@ -180,8 +219,10 @@ function selectAllFrom(tableName, cb) {
 function addEmployee(first_name, last_name, role_id, manager_id, cb) {
     var sqlQuery = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`
     connection.query(sqlQuery, [first_name, last_name, role_id, manager_id], function (error, results, fields) {
-        if (error) throw error;
-        console.log(results)
+        if (error){
+            console.log('Please use existing ID', error.sqlMessage)
+        } else{
+        console.log(results)}
         cb()
         //   console.log(fields)
     });
@@ -197,12 +238,14 @@ function addDepartment(name) {
     });
 }
 
-function addRole(title, salary, department_id) {
+function addRole(title, salary, department_id, cb) {
     var sqlQuery = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`
     connection.query(sqlQuery, [title, salary, department_id], function (error, results, fields) {
-        if (error) throw error;
-        console.log(results)
-        //   console.log(fields)
+        if (error){
+            console.log("Please use existing ID", error.sqlMessage)
+        } else{
+        console.log(results)}
+        // cb()
     });
 }
 
