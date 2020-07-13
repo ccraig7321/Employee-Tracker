@@ -25,7 +25,7 @@ const menuOptions = {
                 message: "What is the name of the department?"
             },
         ]).then(function (answer) {
-            addRole(answer.name, mainMenu())
+            addDepartment(answer.name, mainMenu())
             // console.log(answers)
         })
 
@@ -108,9 +108,32 @@ const menuOptions = {
         selectAllEmployees(mainMenu)
     },
     "Update Employee Roles": function(){
-        console.log("Update Employee Roles")
-        mainMenu()
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "role_ID",
+                message: "What role would you like to update?"
+            },
+            {
+                type: "input",
+                name: "employeeID",
+                message: "What is the new employee ID?"
+            },
+        ]).then(function (answer) {
+            updateRole(answer.role_ID, answer.employeeID, mainMenu())
+            // console.log(answers)
+        })
+
+        // console.log("Add New Employee")
+        // mainMenu()
+        // console.log("Add Employee Role")
+        // mainMenu()
+        // console.log("Add Department")
+        // mainMenu()
     },
+    //     console.log("Update Employee Roles")
+    //     mainMenu()
+    // },
 }
 
 function mainMenu() {
@@ -191,6 +214,7 @@ function selectAllDepartments(cb){
         if (error) throw error;
         // console.log(results[0].first_name)
         let departments = []
+
         results.forEach(function (model){
             departments.push({id : model.id,
                 name : model.name
@@ -220,7 +244,7 @@ function addEmployee(first_name, last_name, role_id, manager_id, cb) {
     var sqlQuery = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`
     connection.query(sqlQuery, [first_name, last_name, role_id, manager_id], function (error, results, fields) {
         if (error){
-            console.log('Please use existing ID', error.sqlMessage)
+            console.log("Please use existing ID", error.sqlMessage)
         } else{
         console.log(results)}
         cb()
