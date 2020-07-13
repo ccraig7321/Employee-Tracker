@@ -55,6 +55,7 @@ Video Guie: https://drive.google.com/file/d/1KuuBSc4G3di5bms1ZfgsBLt90uDd9-Sb/vi
 GitHub:  https://ccraig7321.github.io/Employee-Tracker/
 <br><br>
 
+___
 
 ### License
 
